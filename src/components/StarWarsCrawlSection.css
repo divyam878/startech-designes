@@ -1,0 +1,30 @@
+.star-wars-crawl {
+  overflow: hidden;
+  position: relative;
+  perspective: 250px;
+  background-color: #e2e2e2; /* Default background color */
+  background-image: 
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 200px 200px, 250px 250px, 300px 300px; /* Increase sizes for fewer stars */
+  background-position: 10px 20px, 60px 80px, 120px 150px; /* More randomized positions */
+  transition: background-color 0.5s ease;
+}
+
+.crawl-text {
+  position: absolute;
+  top: 100%;
+  transform: rotateX(15deg);
+  width: 75%; /* Adjust width to prevent content chopping */
+  animation: crawl 50s linear infinite;
+}
+
+@keyframes crawl {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -100%;
+  }
+}

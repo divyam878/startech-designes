@@ -1,0 +1,6 @@
+.footer {
+    height: 200px;
+  padding: 32px; /* Increase padding for more height */
+  /* Alternatively, you can set a specific height */
+  /* height: 100px; */
+}

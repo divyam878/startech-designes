@@ -1,0 +1,17 @@
+@keyframes rocketTremor {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes rocketTakeoff {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, -20px); }
+  100% { transform: translate(20px, -100px); opacity: 0; }
+}
+
+.button-hover:hover .rocket-hover {
+  animation: rocketTremor 0.2s ease-in-out 3, rocketTakeoff 1s ease-in-out 0.6s forwards;
+}

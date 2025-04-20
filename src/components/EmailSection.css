@@ -1,0 +1,16 @@
+.headline-text {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  animation: moveLeft 95s linear infinite; /* This should loop the animation */
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateY(-50%) translateX(100%);
+  }
+  100% {
+    transform: translateY(-50%) translateX(-100%);
+  }
+}
