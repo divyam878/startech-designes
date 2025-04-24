@@ -69,8 +69,8 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} border-t border-black`}>
-          <MobileNavButton onClick={() => { scrollToSection('skills'); toggleMenu(); }}>SERVICES</MobileNavButton>
-          <MobileNavButton onClick={() => { scrollToSection('services'); toggleMenu(); }}>SKILLS</MobileNavButton>
+          <MobileNavButton onClick={() => { scrollToSection('services'); toggleMenu(); }}>SERVICES</MobileNavButton>
+          <MobileNavButton onClick={() => { scrollToSection('skills'); toggleMenu(); }}>SKILLS</MobileNavButton>
           <MobileNavButton onClick={() => { scrollToSection('work'); toggleMenu(); }}>WORK</MobileNavButton>
           <MobileNavButton onClick={() => { scrollToSection('about'); toggleMenu(); }}>ABOUT</MobileNavButton>
           <MobileNavButton onClick={handleContactClick} className="bg-[#3730ff] text-white">
