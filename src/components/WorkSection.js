@@ -113,6 +113,7 @@ export default function WorkSection() {
   
   return (
     <div 
+      id="work"
       ref={sectionRef}
       className="relative w-full bg-blue-600 py-24 overflow-hidden"
       style={{ 
@@ -164,18 +165,18 @@ export default function WorkSection() {
       
       <div className="container mx-auto px-4">
         {/* Section Title */}
-        <h1 className="text-8xl font-bold text-white mb-16" style={{ fontFamily: 'RetroPix' }}>
+        <h1 className="text-6xl md:text-6xl lg:text-8xl font-bold text-white mb-8 md:mb-16" style={{ fontFamily: 'RetroPix' }}>
           WORK
         </h1>
         
         {/* Projects */}
-        <div className="space-y-32">
+        <div className="space-y-16 md:space-y-32">
           {projects.map((project, index) => (
             <div 
               key={project.id}
               className={`flex flex-col md:flex-row items-center ${
                 project.position === 'left' ? 'md:flex-row-reverse' : ''
-              } gap-8`}
+              } gap-4 md:gap-8`}
             >
               {/* Project Image/Video Container */}
               <div className="w-full md:w-1/2 relative overflow-hidden rounded-lg shadow-xl"
@@ -208,37 +209,38 @@ export default function WorkSection() {
                 </div>
                 
                 {/* Hover instruction */}
-                <div className="absolute bottom-4 right-4 bg-white bg-opacity-10 backdrop-blur-lg px-3 py-1 rounded-full text-sm text-black font-medium" style={{ fontFamily: 'Tomorrow, sans-serif', WebkitBackdropFilter: 'blur(10px)', backdropFilter: 'blur(10px)' }}>
+                <div className="absolute bottom-2 md:bottom-4 right-2 md:right-4 bg-white bg-opacity-10 backdrop-blur-lg px-2 md:px-3 py-1 rounded-full text-xs md:text-sm text-black font-medium">
                   Hover to play
                 </div>
               </div>
               
               {/* Project Info */}
-              <div className={`w-full md:w-1/2 text-white ${project.position === 'left' ? 'text-right' : 'text-left'}`}>
-                <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: 'Tomorrow-Bold' }}>
+              <div className={`w-full md:w-1/2 text-white ${project.position === 'left' ? 'md:text-right text-left' : 'text-left'}`}>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-4" style={{ fontFamily: 'Tomorrow-Bold' }}>
                   {project.title}
                 </h2>
                 
-                {/* White line below title - full width and thicker */}
-                <div className={`h-1 bg-white w-full mb-6`}></div>
+                {/* White line below title */}
+                <div className={`h-0.5 md:h-1 bg-white w-full mb-3 md:mb-6`}></div>
                 
                 {/* Tags */}
-                <div className={`flex gap-2 mb-4 ${project.position === 'left' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4 ${project.position === 'left' ? 'md:justify-end justify-start' : 'justify-start'}`}>
                   {project.tags.map(tag => (
                     <span 
                       key={tag} 
-                      className="bg-white text-blue-600 px-4 py-1 rounded-full text-sm font-medium" style={{ fontFamily: 'Tomorrow, sans-serif' }}
+                      className="bg-white text-blue-600 px-2 md:px-4 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-medium"
+                      style={{ fontFamily: 'Tomorrow, sans-serif' }}
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
                 
-                <p className="text-lg mb-2 opacity-80" style={{ fontFamily: 'Tomorrow, sans-serif' }}>{project.date}</p>
-                <p className="text-lg mb-6" style={{ fontFamily: 'Moontime, sans-serif' }}>{project.description}</p>
+                <p className="text-base md:text-lg mb-1 md:mb-2 opacity-80" style={{ fontFamily: 'Tomorrow, sans-serif' }}>{project.date}</p>
+                <p className="text-base md:text-lg mb-4 md:mb-6" style={{ fontFamily: 'Moontime, sans-serif' }}>{project.description}</p>
                 
-                {/* Arrow image - positioned based on project position */}
-                <div className={`w-12 h-12 ${project.position === 'left' ? 'ml-auto' : ''}`}>
+                {/* Arrow image */}
+                <div className={`w-8 h-8 md:w-12 md:h-12 ${project.position === 'left' ? 'md:ml-auto' : ''}`}>
                   <Image 
                     src={project.position === 'right' ? '/arrow-left.png' : '/arrow-right.png'}
                     alt="Arrow"

@@ -1,15 +1,19 @@
 'use client'
 
 import { useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 
 const Moon = () => {
   const moonRef = useRef(null)
+  const { viewport } = useThree()
   const moonTexture = useTexture('/moon-texture.jpg')
   const normalMap = useTexture('/moon-normal.jpg')
   const roughnessMap = useTexture('/moon-texture.jpg')
   const gradientTexture = useTexture('/radial-gradient.png')
+
+  // Calculate responsive scale based on viewport
+  const scale = Math.min(viewport.width, viewport.height) * 0.2
 
   useFrame((state) => {
     if (!moonRef.current) return
@@ -21,7 +25,7 @@ const Moon = () => {
   })
 
   return (
-    <group>
+    <group scale={scale}>
       <ambientLight intensity={0.4} />
       <directionalLight position={[5, 3, 5]} intensity={1.2} />
       

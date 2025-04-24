@@ -12,7 +12,7 @@ export default function ContactCard({ isVisible, onClose }) {
   useEffect(() => {
     if (isVisible) {
       setStyle({
-        bottom: '20%',
+        bottom: isVisible ? (window.innerWidth < 768 ? '10%' : '20%') : '-100%',
         transition: 'bottom 1s ease-in-out',
       });
     } else {
@@ -38,14 +38,25 @@ export default function ContactCard({ isVisible, onClose }) {
 
   return (
     <>
-      {isVisible && <div className="backdrop" />} {/* Add backdrop for blur effect */}
-      <div className="contact-card" style={style} ref={cardRef}>
-        <div className="card-header">
-          <img src="/starlab-icon.png" alt="Starlab Logo" className="logo" />
-          <span style={{ fontFamily: 'Tomorrow-Bold' }} className="text-6xl font-bold text-black">STAR<span className="text-[#3730FF]">TECH</span> DESIGNS</span>
+      {isVisible && <div className="backdrop" />}
+      <div className="contact-card p-4 md:p-8 w-[90%] md:w-[80%] max-w-4xl" style={style} ref={cardRef}>
+        <div className="card-header flex flex-col md:flex-row items-center gap-4 md:gap-8">
+          <img 
+            src="/starlab-icon.png" 
+            alt="Starlab Logo" 
+            className="w-22 h-22 md:w-24 md:h-24 object-contain"
+          />
+          <span 
+            style={{ fontFamily: 'Tomorrow-Bold' }} 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center md:text-left"
+          >
+            STAR<span className="text-[#3730FF]">TECH</span> DESIGNS
+          </span>
         </div>
-        <div className="card-footer">
-          <p>divyamgoyal878@gmail.com<br />+91 8233120760</p>
+        <div className="card-footer mt-4 md:mt-8">
+          <p className="text-sm md:text-base text-center md:text-right">
+            divyamgoyal878@gmail.com<br />+91 8233120760
+          </p>
         </div>
       </div>
     </>

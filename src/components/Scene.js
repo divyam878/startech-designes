@@ -26,16 +26,16 @@ const Scene = () => {
           <Sparkles count={50} scale={12} size={1} speed={0.3} opacity={0.2} />
           <Moon />
         </Canvas>
-        <div className="absolute top-1/4 left-20 z-10 text-black">
-          <h1 className="text-7xl font-bold tracking-wider">
+        <div className="absolute top-1/6 md:top-1/4 left-10 md:left-20 z-10 text-black">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-wider">
             <span style={{ fontFamily: "Tomorrow" }}>WEBSITE</span>
             <br />
             <span style={{ fontFamily: "Tomorrow" }}>DESIGN</span>
           </h1>
         </div>
-        <div className="absolute bottom-20 right-20 z-10">
+        <div className="absolute bottom-20 right-10 md:bottom-20 md:right-20 z-10">
           <h2
-            className="text-6xl font-bold bg-[#3730ff] text-white px-6 py-3"
+            className="text-3xl md:text-6xl font-bold bg-[#3730ff] text-white px-6 py-3"
             style={{ fontFamily: "RetroPix" }}
           >
             DEVELOPMENT

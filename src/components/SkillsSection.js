@@ -45,7 +45,7 @@ const SkillNode = ({ x, y, radius, label, type, onClick }) => {
         color: 'white',
         fontFamily: 'Tomorrow-Bold',
         fontWeight: 'bold',
-        fontSize: '34px',
+        fontSize: radius < 100 ? '16px' : '34px',
         transform: hover 
           ? `translate(-50%, -50%) translate(${position.x}px, ${position.y}px) scale(1.05)` 
           : `translate(-50%, -50%) translate(${position.x}px, ${position.y}px)`
@@ -153,45 +153,47 @@ const TechIcon = ({ icon, name, x, y }) => {
 };
 
 // Expanded Skill View
-const ExpandedSkillView = ({ skill, onClose }) => {
+const ExpandedSkillView = ({ skill, onClose, isMobile = window.innerWidth < 768 }) => {
   const containerRef = useRef(null);
   const [containerSize, setContainerSize] = useState({ width: 1000, height: 600 });
   const [animationComplete, setAnimationComplete] = useState(false);
   
   // Tech stacks for each skill
+  // Update the techStacks positions for mobile
   const techStacks = {
     frontend: [
-      { name: 'React', icon: '/images/react.png', x: '50%', y: '10%' },
-      { name: 'Next.js', icon: '/images/nextjs.png', x: '60%', y: '20%' },
-      { name: 'JavaScript', icon: '/images/javascript.png', x: '75%', y: '80%' },
-      { name: 'TypeScript', icon: '/images/typescript.png', x: '50%', y: '70%' },
-      { name: 'HTML', icon: '/images/html5.png', x: '75%', y: '40%' },
-      { name: 'CSS', icon: '/images/css3.png', x: '85%', y: '60%' },
-      { name: 'Bootstrap', icon: '/images/bootstrap.png', x: '25%', y: '80%' },
-      { name: 'Redux', icon: '/images/redux.png', x: '85%', y: '30%' },
+      { name: 'React', icon: '/images/react.png', x: isMobile ? '20%' : '50%', y: isMobile ? '38%' : '10%' },
+      { name: 'Next.js', icon: '/images/nextjs.png', x: isMobile ? '45%' : '60%', y: isMobile ? '33%' : '20%' },
+      { name: 'JavaScript', icon: '/images/javascript.png', x: isMobile ? '80%' : '75%', y: isMobile ? '35%' : '80%' },
+      { name: 'TypeScript', icon: '/images/typescript.png', x: isMobile ? '70%' : '50%', y: isMobile ? '49%' : '70%' },
+      { name: 'HTML', icon: '/images/html5.png', x: isMobile ? '30%' : '75%', y: isMobile ? '73%' : '40%' },
+      { name: 'CSS', icon: '/images/css3.png', x: isMobile ? '75%' : '85%', y: isMobile ? '65%' : '60%' },
+      { name: 'Bootstrap', icon: '/images/bootstrap.png', x: isMobile ? '20%' : '25%', y: isMobile ? '90%' : '80%' },
+      { name: 'Redux', icon: '/images/redux.png', x: isMobile ? '60%' : '85%', y: isMobile ? '80%' : '30%' },
     ],
     backend: [
-      { name: 'Node.js', icon: '/images/nodejs.png', x: '50%', y: '10%' },
-      { name: 'Express', icon: '/images/express.png', x: '60%', y: '20%' },
-      { name: 'MongoDB', icon: '/images/mongodb.png', x: '75%', y: '40%' },
-      { name: 'SQL', icon: '/images/sql.png', x: '85%', y: '60%' },
-      { name: 'Firebase', icon: '/images/firebase.png', x: '50%', y: '70%' },
-      { name: 'Python', icon: '/images/python.png', x: '75%', y: '80%' },
+      { name: 'Node.js', icon: '/images/nodejs.png', x: isMobile ? '30%' : '50%', y: isMobile ? '35%' : '10%' },
+      { name: 'Express', icon: '/images/express.png', x: isMobile ? '70%' : '60%', y: isMobile ? '35%' : '20%' },
+      { name: 'MongoDB', icon: '/images/mongodb.png', x: isMobile ? '40%' : '75%', y: isMobile ? '70%' : '40%' },
+      { name: 'SQL', icon: '/images/sql.png', x: isMobile ? '80%' : '85%', y: isMobile ? '50%' : '60%' },
+      { name: 'Firebase', icon: '/images/firebase.png', x: isMobile ? '30%' : '50%', y: isMobile ? '85%' : '70%' },
+      { name: 'Python', icon: '/images/python.png', x: isMobile ? '70%' : '75%', y: isMobile ? '65%' : '80%' },
     ],
     bonus: [
-      { name: 'Figma', icon: '/images/figma.png', x: '40%', y: '10%' },
-      { name: 'SEO', icon: '/images/seo.png', x: '70%', y: '60%' },
-      { name: 'Git', icon: '/images/git.png', x: '70%', y: '25%' },
-      { name: 'Github', icon: '/images/github.png', x: '75%', y: '90%' },
-      { name: 'Prisma', icon: '/images/prisma.png', x: '40%', y: '80%' },
-      { name: 'VScode', icon: '/images/vscode.png', x: '50%', y: '10%' },
-      { name: 'POSTMAN', icon: '/images/postman.png', x: '60%', y: '15%' },
-      { name: 'Clerk', icon: '/images/clerk.png', x: '75%', y: '40%' },
-      { name: 'Appscript', icon: '/images/appscript.png', x: '85%', y: '60%' },
-      { name: 'Sheets', icon: '/images/sheets.png', x: '50%', y: '70%' },
+      { name: 'Figma', icon: '/images/figma.png', x: isMobile ? '30%' : '40%', y: isMobile ? '35%' : '10%' },
+      { name: 'SEO', icon: '/images/seo.png', x: isMobile ? '60%' : '70%', y: isMobile ? '33%' : '60%' },
+      { name: 'Git', icon: '/images/git.png', x: isMobile ? '50%' : '70%', y: isMobile ? '45%' : '25%' },
+      { name: 'Github', icon: '/images/github.png', x: isMobile ? '75%' : '75%', y: isMobile ? '50%' : '90%' },
+      { name: 'Prisma', icon: '/images/prisma.png', x: isMobile ? '80%' : '40%', y: isMobile ? '70%' : '80%' },
+      { name: 'VScode', icon: '/images/vscode.png', x: isMobile ? '70%' : '50%', y: isMobile ? '60%' : '10%' },
+      { name: 'POSTMAN', icon: '/images/postman.png', x: isMobile ? '30%' : '60%', y: isMobile ? '80%' : '15%' },
+      { name: 'Clerk', icon: '/images/clerk.png', x: isMobile ? '70%' : '75%', y: isMobile ? '80%' : '40%' },
+      { name: 'Appscript', icon: '/images/appscript.png', x: isMobile ? '20%' : '85%', y: isMobile ? '90%' : '60%' },
+      { name: 'Sheets', icon: '/images/sheets.png', x: isMobile ? '65%' : '50%', y: isMobile ? '90%' : '70%' },
     ]
   };
-  
+
+  // Rest of the component code remains the same...
   // Tech pills for each skill
   const techPills = {
     frontend: ['REACT JS', 'NEXT JS', 'JAVASCRIPT', 'TYPESCRIPT', 'REDUX', 'HTML', 'CSS', 'BOOTSTRAP'],
@@ -267,6 +269,7 @@ const ExpandedSkillView = ({ skill, onClose }) => {
   
   return (
     <div 
+      id="skills"
       ref={containerRef}
       className="fixed inset-0 z-50 overflow-hidden"
     >
@@ -330,35 +333,32 @@ const ExpandedSkillView = ({ skill, onClose }) => {
       {/* Back Button */}
       <button 
         onClick={onClose}
-        className="absolute top-8 right-8 z-50 bg-white text-[#3730ff] px-4 py-2 rounded-full font-bold"
-        style={{ 
-          animation: 'fadeIn 0.3s ease-out forwards',
-          animationDelay: '0.6s',
-          opacity: 0
-        }}
+        className="absolute top-4 md:top-8 right-4 md:right-8 z-50 bg-white text-[#3730ff] px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-sm md:text-base"
       >
         Back
       </button>
       
       {/* Skill Title */}
       <div 
-        className="absolute top-1/4 left-24 z-10"
+        className="absolute top-20 md:top-1/4 left-4 md:left-24 z-10"
         style={{ 
           animation: 'fadeIn 0.5s ease-out forwards',
           animationDelay: '0.4s',
-          opacity: 0
+          opacity: 0,
+          width: isMobile ? '90%' : '500px',
+          maxWidth: '100%'
         }}
       >
-        <h1 className="text-7xl font-bold text-white" style={{ fontFamily: 'Tomorrow-Bold' }}>
+        <h1 className="text-4xl md:text-7xl font-bold text-white" style={{ fontFamily: 'Tomorrow-Bold' }}>
           {skill.toUpperCase()}
         </h1>
         
         {/* Tech Pills */}
-        <div className="flex flex-wrap mt-8 max-w-md">
+        <div className="flex flex-wrap gap-2 mt-4 md:mt-8 max-w-full">
           {techPills[skill].map((pill, index) => (
             <div 
               key={index}
-              className="bg-black text-white px-4 py-2 rounded-full m-1 text-sm font-bold"
+              className="bg-black text-white px-2 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-bold whitespace-nowrap"
               style={{ 
                 fontFamily: 'Tomorrow',
                 animation: 'fadeIn 0.3s ease-out forwards',
@@ -376,9 +376,9 @@ const ExpandedSkillView = ({ skill, onClose }) => {
       <svg className="absolute inset-0 w-full h-full pointer-events-none">
         {/* Origin point circle */}
         <circle 
-          cx="37%" 
-          cy="30%" 
-          r="5" 
+          cx={isMobile ? "10%" : "37%"}
+          cy={isMobile ? "50%" : "30%"}
+          r={isMobile ? "3" : "5"}
           fill="white" 
           style={{ 
             opacity: animationComplete ? 0.9 : 0,
@@ -390,12 +390,12 @@ const ExpandedSkillView = ({ skill, onClose }) => {
         {techStacks[skill].map((tech, index) => (
           <line 
             key={`line-${index}`}
-            x1="37%" 
-            y1="30%" 
+            x1={isMobile ? "10%" : "37%"}
+            y1={isMobile ? "50%" : "30%"}
             x2={tech.x} 
             y2={tech.y} 
             stroke="white" 
-            strokeWidth="2"
+            strokeWidth={isMobile ? "1" : "2"}
             style={{ 
               strokeDasharray: "1000",
               strokeDashoffset: animationComplete ? "0" : "1000",
@@ -421,8 +421,8 @@ const ExpandedSkillView = ({ skill, onClose }) => {
             transitionDelay: `${1.2 + index * 0.1}s`
           }}
         >
-          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-            <img src={tech.icon} alt={tech.name} className="w-10 h-10 object-contain" />
+          <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center">
+            <img src={tech.icon} alt={tech.name} className="w-8 h-8 md:w-10 md:h-10 object-contain" />
           </div>
         </div>
       ))}
@@ -436,7 +436,19 @@ export default function SkillsSection() {
   const [containerSize, setContainerSize] = useState({ width: 1000, height: 600 });
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [expandedSkill, setExpandedSkill] = useState(null);
-  
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Add mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Update container size on window resize
   useEffect(() => {
     const updateSize = () => {
@@ -453,31 +465,89 @@ export default function SkillsSection() {
     
     return () => window.removeEventListener('resize', updateSize);
   }, []);
-  
-  // Define nodes
+
+  // Define nodes with responsive positions
   const nodes = [
-    { id: 'frontend', x: containerSize.width * 0.5, y: containerSize.height * 0.3, radius: 150, label: 'FRONTEND', type: 'main', 
-      content: "React, Next.js, CSS, Tailwind, JavaScript" },
-    { id: 'backend', x: containerSize.width * 0.25, y: containerSize.height * 0.65, radius: 150, label: 'BACKEND', type: 'main',
-      content: "Node.js, Express, MongoDB, SQL, APIs" },
-    { id: 'bonus', x: containerSize.width * 0.85, y: containerSize.height * 0.65, radius: 150, label: 'BONUS', type: 'main',
-      content: "UI/UX Design, Performance Optimization, SEO" },
-    { id: 'node1', x: containerSize.width * 0.31, y: containerSize.height * 0.55, radius: 30, label: '', type: 'small' },
-    { id: 'node2', x: containerSize.width * 0.15, y: containerSize.height * 0.48, radius: 10, label: '', type: 'tiny' },
-    { id: 'node3', x: containerSize.width * 1.30, y: containerSize.height * 0.5, radius: 20, label: '', type: 'tiny' },
-    { id: 'node4', x: containerSize.width * 0.65, y: containerSize.height * 0.87, radius: 30, label: '', type: 'small' },
-    { id: 'node5', x: containerSize.width * 1.10, y: containerSize.height * 0.22, radius: 12, label: '', type: 'tiny' }
+    { 
+      id: 'frontend', 
+      x: containerSize.width * (isMobile ? 0.5 : 0.5),
+      y: containerSize.height * (isMobile ? 0.3 : 0.3),
+      radius: isMobile ? 70 : 150,
+      label: 'FRONTEND',
+      type: 'main'
+    },
+    { 
+      id: 'backend',
+      x: containerSize.width * (isMobile ? 0.3 : 0.25),
+      y: containerSize.height * (isMobile ? 0.8 : 0.65),
+      radius: isMobile ? 80 : 150,
+      label: 'BACKEND',
+      type: 'main'
+    },
+    { 
+      id: 'bonus',
+      x: containerSize.width * (isMobile ? 0.7 : 0.85),
+      y: containerSize.height * (isMobile ? 0.6 : 0.65),
+      radius: isMobile ? 90 : 150,
+      label: 'BONUS',
+      type: 'main'
+    },
+    // Adjust small nodes for mobile
+    { 
+      id: 'node1',
+      x: containerSize.width * (isMobile ? 0.2 : 0.31),
+      y: containerSize.height * (isMobile ? 0.45 : 0.55),
+      radius: isMobile ? 8 : 30,
+      label: '',
+      type: 'small'
+    },
+    { 
+      id: 'node2', 
+      x: containerSize.width * (isMobile ? 0.1 : 0.15), 
+      y: containerSize.height * (isMobile ? 0.4 : 0.48), 
+      radius: isMobile ? 5 : 10, 
+      label: '', 
+      type: 'tiny' 
+    },
+    { 
+      id: 'node3', 
+      x: containerSize.width * (isMobile ? 0.85 : 1.30), 
+      y: containerSize.height * (isMobile ? 0.45 : 0.5), 
+      radius: isMobile ? 8 : 20, 
+      label: '', 
+      type: 'tiny' 
+    },
+    { 
+      id: 'node4', 
+      x: containerSize.width * (isMobile ? 0.5 : 0.65), 
+      y: containerSize.height * (isMobile ? 0.75 : 0.87), 
+      radius: isMobile ? 10 : 30, 
+      label: '', 
+      type: 'small' 
+    },
+    { 
+      id: 'node5', 
+      x: containerSize.width * (isMobile ? 0.8 : 1.10), 
+      y: containerSize.height * (isMobile ? 0.25 : 0.22), 
+      radius: isMobile ? 6 : 12, 
+      label: '', 
+      type: 'tiny' 
+    }
   ];
-  
-  // Define connections
-  const connections = [
+
+  // Define connections with mobile-friendly paths
+  const connections = isMobile ? [
+    { start: 'frontend', end: 'backend' },
+    { start: 'backend', end: 'bonus' },
+    { start: 'bonus', end: 'frontend' },
+  ] : [
     { start: 'frontend', end: 'backend' },
     { start: 'frontend', end: 'bonus' },
     { start: 'frontend', end: 'node4' },
     { start: 'backend', end: 'node1' },
     { start: 'node1', end: 'node2' },
     { start: 'frontend', end: 'node5' },
-    { start: 'bonus', end: 'node3' },
+    { start: 'bonus', end: 'node3' }
   ];
   
   // Handle node click
@@ -535,16 +605,18 @@ export default function SkillsSection() {
   
   return (
     <div 
+      id="skills"
       ref={containerRef}
       className="relative w-full h-screen overflow-hidden bg-[#e2e2e2]"
+      style={{ scrollMarginTop: '64px' }}
     >
       {/* Grid Background */}
       <div className="absolute inset-0">
         {generateGrid()}
       </div>
-      
+
       {/* SKILLS title */}
-      <div className="absolute top-10 left-24 z-10">
+      <div className="absolute  top-10 left-4 md:top-10 md:left-24 z-10">
         <h1 className="text-5xl font-bold text-[#3730ff]" style={{ fontFamily: 'Tomorrow-Bold' }}>
           SKILLS
         </h1>

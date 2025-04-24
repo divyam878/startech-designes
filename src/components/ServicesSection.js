@@ -6,13 +6,28 @@ import Image from 'next/image';
 const Planet = ({ name, color, size, orbitRadius, speed, angle, onClick, children }) => {
   const [currentAngle, setCurrentAngle] = useState(angle);
   const [hover, setHover] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Calculate responsive values
+  const mobileSize = size * 0.6;
+  const mobileOrbitRadius = orbitRadius * 0.9;
+  const adjustedCenterX = isMobile ? 15 : 5;
+  const adjustedOrbitRadius = isMobile ? mobileOrbitRadius : orbitRadius;
   
-  // Calculate position based on angle and orbit radius
-  // Modified to create true elliptical orbits
-  const centerX = 5;
-  const x = centerX + Math.cos(currentAngle) * orbitRadius;
-  const y = 50 + Math.sin(currentAngle) * (orbitRadius * 0.3); // True elliptical orbit
-  
+  // Calculate position
+  const x = adjustedCenterX + Math.cos(currentAngle) * adjustedOrbitRadius;
+  const y = 50 + Math.sin(currentAngle) * (adjustedOrbitRadius * 0.3);
+
   // Orbit animation - drastically reduced speed
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,8 +69,8 @@ const Planet = ({ name, color, size, orbitRadius, speed, angle, onClick, childre
         style={{
           left: `${x}%`,
           top: `${y}%`,
-          width: `${size}px`,
-          height: `${size}px`,
+          width: `${isMobile ? mobileSize : size}px`,
+          height: `${isMobile ? mobileSize : size}px`,
           backgroundColor: color,
           borderRadius: '50%',
           transform: `translate(-50%, -50%) ${hover ? 'scale(1.05)' : 'scale(1)'}`,
@@ -66,7 +81,8 @@ const Planet = ({ name, color, size, orbitRadius, speed, angle, onClick, childre
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <div className="text-center text-white font-bold px-2 whitespace-nowrap" style={{ fontSize: size > 100 ? '16px' : '12px' }}>
+        <div className="text-center text-white font-bold px-2 whitespace-nowrap" 
+          style={{ fontSize: isMobile ? '10px' : (size > 100 ? '16px' : '12px') }}>
           {children}
         </div>
       </div>
@@ -140,6 +156,7 @@ const ServiceModal = ({ service, onClose }) => {
     }
   };
   
+  // Move the content variable declaration before useEffect
   const content = serviceContent[service];
   
   // Generate explosion particles on mount
@@ -211,7 +228,7 @@ const ServiceModal = ({ service, onClose }) => {
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 z-50 overflow-hidden"
+      className="fixed inset-0 z-50 overflow-y-auto"
     >
       <style jsx>{`
         @keyframes fadeIn {
@@ -274,8 +291,8 @@ const ServiceModal = ({ service, onClose }) => {
       />
       
       {/* Rest of the modal content with increased delayed animations */}
-      {/* Diagonal line */}
-      <div className="absolute inset-0 overflow-hidden" style={{ 
+      {/* Diagonal line - hide on mobile */}
+      <div className="hidden md:block absolute inset-0 overflow-hidden" style={{ 
         opacity: animationComplete ? 1 : 0, 
         transition: 'opacity 0.5s',
         visibility: animationComplete ? 'visible' : 'hidden'
@@ -295,11 +312,11 @@ const ServiceModal = ({ service, onClose }) => {
       {/* Back Button */}
       <button 
         onClick={onClose}
-        className="absolute top-8 right-8 z-50 bg-white px-4 py-2 rounded-full font-bold"
+        className="absolute top-4 md:top-8 right-4 md:right-8 z-50 bg-white px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-sm md:text-base"
         style={{ 
           color: content.color,
           animation: 'fadeIn 0.3s ease-out forwards',
-          animationDelay: '1.3s', // Increased delay
+          animationDelay: '1.3s',
           opacity: 0
         }}
       >
@@ -308,32 +325,50 @@ const ServiceModal = ({ service, onClose }) => {
       
       {/* Service Title */}
       <div 
-        className="absolute top-1/8 left-24 z-10"
+        className="absolute top-20 md:top-1/8 left-4 md:left-24 right-4 md:right-auto z-10"
         style={{ 
           animation: 'fadeIn 0.5s ease-out forwards',
-          animationDelay: '1s', // Increased delay
+          animationDelay: '1s',
           opacity: 0
         }}
       >
-        <h1 className="text-7xl font-bold" style={{ 
+        <h1 className="text-3xl md:text-7xl font-bold break-words" style={{ 
           fontFamily: 'Tomorrow-Bold',
           color: service === 'support' ? '#3730ff' : 'white'
         }}>
           {content.title}
         </h1>
+
+        {/* Mobile Pills - Only instance for mobile */}
+        <div className="md:hidden flex flex-col space-y-2 mt-4">
+          {content.pills.map((pill, index) => (
+            <div 
+              key={index}
+              className="bg-white text-black px-3 py-1 rounded-full text-left font-bold text-xs w-fit"
+              style={{ 
+                fontFamily: 'Tomorrow, sans-serif',
+                animation: 'slideInFromRight 0.4s ease-out forwards',
+                animationDelay: `${1.4 + index * 0.1}s`,
+                opacity: 0
+              }}
+            >
+              {pill}
+            </div>
+          ))}
+        </div>
       </div>
       
-      {/* Service Content Container */}
+      {/* Service Content Container - adjusted position for mobile */}
       <div 
-        className="absolute bottom-24 left-24 z-10 flex items-center"
+        className="absolute bottom-20 md:bottom-24 left-4 md:left-24 right-4 md:right-auto z-10 flex flex-col md:flex-row items-center md:items-start"
         style={{ 
           animation: 'fadeIn 0.5s ease-out forwards',
-          animationDelay: '1.2s', // Increased delay
+          animationDelay: '1.2s',
           opacity: 0
         }}
       >
-        {/* Service Image */}
-        <div className="w-64 h-64">
+        {/* Service Image - larger on mobile */}
+        <div className="w-48 h-48 md:w-64 md:h-64 mb-4 md:mb-0">
           <img 
             src={content.image} 
             alt={content.title} 
@@ -342,40 +377,23 @@ const ServiceModal = ({ service, onClose }) => {
         </div>
 
         {/* Service Description */}
-        <div className="ml-8 max-w-md">
-          <p className="text-lg" style={{ 
-           fontFamily: 'Tomorrow, sans-serif', color: service === 'support' ? '#3730ff' : 'white'
+        <div className="md:ml-8 max-w-md">
+          <p className="text-sm md:text-lg text-center md:text-left" style={{ 
+           fontFamily: 'Tomorrow, sans-serif',
+           color: service === 'support' ? '#3730ff' : 'white'
           }}>
             {content.description}
           </p>
         </div>
       </div>
       
-      {/* Service Pills - with increased delayed animation */}
-      <div className="absolute z-10 pointer-events-none" style={{ top: '35%', right: '10%', height: '30%', width: '30%' }}>
-        {content.pills.map((pill, index) => {
-          // Calculate position along the diagonal line
-          const progress = index / (content.pills.length - 1);
-          
-          return (
-            <div 
-              key={index}
-              className="absolute bg-white text-black px-6 py-3 rounded-full text-center font-bold whitespace-nowrap pointer-events-auto"
-              style={{ 
-                top: `${progress * 100}%`,
-                left: `${progress * 70}%`,
-                transform: 'translate(-50%, -50%)',
-                fontFamily: 'Tomorrow, sans-serif',
-                animation: 'slideInFromRight 0.4s ease-out forwards',
-                animationDelay: `${1.4 + index * 0.1}s`, // Increased delay
-                opacity: 0
-              }}
-            >
-              {pill}
-            </div>
-          );
-        })}
+      {/* Remove this entire block as it's duplicating pills on mobile */}
+      {/* Service Pills - Mobile */}
+      {/* DELETE THIS BLOCK
+      <div className="md:hidden absolute z-10 top-1/2 left-4 right-4 flex flex-wrap gap-2 justify-center">
+        {content.pills.map((pill, index) => ( ... ))}
       </div>
+      */}
     </div>
   );
 };
@@ -408,10 +426,12 @@ export default function ServicesSection() {
   
   return (
     <div 
+    id="services" 
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden transition-colors duration-700"
       style={{ 
-        backgroundColor: isInView ? '#000000' : '#e2e2e2'
+        backgroundColor: isInView ? '#000000' : '#e2e2e2',
+        scrollMarginTop: '64px' // Add this to account for navbar height
       }}
     >
       {/* Custom cursor */}
@@ -478,14 +498,15 @@ export default function ServicesSection() {
              }} />
       </div>
       
-      {/* Main "SERVICES" sun */}
+      {/* Main "SERVICES" sun for mobile */}
       <div className="absolute top-1/2 left-0 transform -translate-y-1/2">
-        <div className="w-96 h-96 bg-blue-600 rounded-full flex items-center justify-center"
+        <div className="w-48 h-48 md:w-96 md:h-96 bg-blue-600 rounded-full flex items-center justify-center"
              style={{ 
                boxShadow: '0 0 40px rgba(55, 48, 255, 0.6)',
                background: 'radial-gradient(circle, #4a5af8 0%, #3730ff 100%)'
              }}>
-          <h1 className="text-5xl font-bold text-white ml-16" style={{ fontFamily: 'Tomorrow-Bold' }}>
+          <h1 className="text-3xl md:text-5xl font-bold text-white ml-8 md:ml-16" 
+              style={{ fontFamily: 'Tomorrow-Bold' }}>
             SERVICES
           </h1>
         </div>
@@ -499,7 +520,7 @@ export default function ServicesSection() {
           color="#8a9cc0" 
           size={150} 
           orbitRadius={55} 
-          speed={0.00005} // Drastically reduced speed
+          speed={0.000005} // Drastically reduced speed
           angle={Math.PI * 0.25} // Bottom left position
           onClick={() => setActiveService('brand')}
         >
@@ -513,7 +534,7 @@ export default function ServicesSection() {
           color="#f0f0f0" 
           size={130} 
           orbitRadius={95} 
-          speed={0.00002} // Drastically reduced speed
+          speed={0.000002} // Drastically reduced speed
           angle={Math.PI * 1.8} // Top position
           onClick={() => setActiveService('support')}
         >
@@ -527,7 +548,7 @@ export default function ServicesSection() {
           color="#3730ff" 
           size={170} 
           orbitRadius={60} 
-          speed={0.00005} // Drastically reduced speed
+          speed={0.000005} // Drastically reduced speed
           angle={Math.PI * 0.001} // Right position - adjusted to be on right side
           onClick={() => setActiveService('development')}
         >
