@@ -148,12 +148,12 @@ const ServiceModal = ({ service, onClose }) => {
       pills: ['Web Development', 'Custom CMS', 'Ecommerce', 'Interaction Design', 'Content Creation']
     },
     'support': {
-      title: 'ONGOING SUPPORT',
-      color: '#f0f0f0', // Light gray color from image
-      description: "I will also provide CMS training & support for every client - no more requesting site updates for more of your time and $$$. As a Webflow Expert partner, I don't leave clients high and dry. I'm here to help your business grow, update, create, and thrive in the long run with ongoing support services. Let's keep the party going!",
-      image: '/rocket.png', // Replace with your actual image path
-      pills: ['SEO', 'Analytics', 'Content Updates', 'Design Updates']
-    }
+  title: 'ONGOING SUPPORT',
+  color: '#f0f0f0', // Light gray color from image
+  description: "I provide training and long-term support for every client—no need to keep paying for minor updates. Whether your site is built on Webflow, WordPress, or custom code, I'm here to help your business grow, evolve, and thrive. From content and design updates to SEO and analytics, I’ve got your back with reliable ongoing support. Let’s keep your site sharp and future-ready!",
+  image: '/rocket.png', // Replace with your actual image path
+  pills: ['SEO', 'Analytics', 'Content Updates', 'Design Updates']
+}
   };
   
   // Move the content variable declaration before useEffect
@@ -295,7 +295,7 @@ const ServiceModal = ({ service, onClose }) => {
       <div className="hidden md:block absolute inset-0 overflow-hidden" style={{ 
         opacity: animationComplete ? 1 : 0, 
         transition: 'opacity 0.5s',
-        visibility: animationComplete ? 'visible' : 'hidden'
+        visibility: animationComplete ? 'hidden' : 'hidden'
       }}>
         <div className="absolute h-1 bg-white opacity-50"
              style={{
@@ -339,7 +339,25 @@ const ServiceModal = ({ service, onClose }) => {
           {content.title}
         </h1>
 
-        {/* Mobile Pills - Only instance for mobile */}
+        {/* Desktop Pills */}
+        <div className="hidden md:flex flex-wrap gap-3 mt-8">
+          {content.pills.map((pill, index) => (
+            <div 
+              key={index}
+              className="bg-white text-black px-4 py-2 rounded-full font-bold"
+              style={{ 
+                fontFamily: 'Tomorrow, sans-serif',
+                animation: 'slideInFromRight 0.4s ease-out forwards',
+                animationDelay: `${1.4 + index * 0.1}s`,
+                opacity: 0
+              }}
+            >
+              {pill}
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile Pills - existing code */}
         <div className="md:hidden flex flex-col space-y-2 mt-4">
           {content.pills.map((pill, index) => (
             <div 
@@ -377,8 +395,8 @@ const ServiceModal = ({ service, onClose }) => {
         </div>
 
         {/* Service Description */}
-        <div className="md:ml-8 max-w-md">
-          <p className="text-sm md:text-lg text-center md:text-left" style={{ 
+        <div className="md:ml-24 max-w-lg">
+          <p className="text-sm md:text-xl text-center md:text-left" style={{ 
            fontFamily: 'Tomorrow, sans-serif',
            color: service === 'support' ? '#3730ff' : 'white'
           }}>
