@@ -40,7 +40,7 @@ const Navbar = () => {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span style={{ fontFamily: 'Tomorrow-Bold' }} className="text-xl font-bold text-black">STAR<span className="text-[#3730FF]">TECH</span> DESIGNS</span>
+            <span style={{ fontFamily: 'Tomorrow-Bold' }} className="text-xl font-bold text-black">STAR<span className="text-[#3730FF]">TECH</span> INDUSTRIES</span>
           </div>
 
           {/* Hamburger Menu Button */}

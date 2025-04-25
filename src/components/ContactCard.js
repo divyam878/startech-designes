@@ -50,7 +50,7 @@ export default function ContactCard({ isVisible, onClose }) {
             style={{ fontFamily: 'Tomorrow-Bold' }} 
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center md:text-left"
           >
-            STAR<span className="text-[#3730FF]">TECH</span> DESIGNS
+            STAR<span className="text-[#3730FF]">TECH</span> INDUSTRIES
           </span>
         </div>
         <div className="card-footer mt-4 md:mt-8">
