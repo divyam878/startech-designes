@@ -142,7 +142,7 @@ const ServiceModal = ({ service, onClose }) => {
     },
     'development': {
       title: 'WEB DEVELOPMENT',
-      color: '#3730ff', // Blue color from image
+      color: '#3b65d8', // Blue color from image
       description: "Once the design looks perfect, then we build. I utilize some awesome tools like Webflow to build clean, fast, & responsive websites. My agency Sweven.design is a certified Webflow Expert Enterprise Partner, check us out if you'd like to partner on a project.",
       image: '/satellite.png', // Replace with your actual image path
       pills: ['Web Development', 'Custom CMS', 'Ecommerce', 'Interaction Design', 'Content Creation']
@@ -334,7 +334,7 @@ const ServiceModal = ({ service, onClose }) => {
       >
         <h1 className="text-3xl md:text-7xl font-bold break-words" style={{ 
           fontFamily: 'Tomorrow-Bold',
-          color: service === 'support' ? '#3730ff' : 'white'
+          color: service === 'support' ? '#05204a' : 'white'
         }}>
           {content.title}
         </h1>
@@ -398,7 +398,7 @@ const ServiceModal = ({ service, onClose }) => {
         <div className="md:ml-24 max-w-lg">
           <p className="text-sm md:text-xl text-center md:text-left" style={{ 
            fontFamily: 'Tomorrow, sans-serif',
-           color: service === 'support' ? '#3730ff' : 'white'
+           color: service === 'support' ? '#05204a' : 'white'
           }}>
             {content.description}
           </p>
@@ -461,7 +461,7 @@ export default function ServicesSection() {
           borderRadius: '50%',
           backgroundColor: '#ffffff',
           border: '2px solid #ffffff',
-          color: '#3730ff',
+          color: '#05204a',
           fontFamily: 'Tomorrow, sans-serif',
           fontSize: '12px',
           fontWeight: 'bold',
@@ -521,7 +521,7 @@ export default function ServicesSection() {
         <div className="w-48 h-48 md:w-96 md:h-96 bg-blue-600 rounded-full flex items-center justify-center"
              style={{ 
                boxShadow: '0 0 40px rgba(55, 48, 255, 0.6)',
-               background: 'radial-gradient(circle, #4a5af8 0%, #3730ff 100%)'
+               background: 'radial-gradient(circle, #4a5c8f 0%, #4a5c8f 100%)'
              }}>
           <h1 className="text-3xl md:text-5xl font-bold text-white ml-8 md:ml-16" 
               style={{ fontFamily: 'Tomorrow-Bold' }}>
@@ -556,14 +556,14 @@ export default function ServicesSection() {
           angle={Math.PI * 1.8} // Top position
           onClick={() => setActiveService('support')}
         >
-          <span style={{ fontFamily: 'Tomorrow', color: '#3730ff' }}>
+          <span style={{ fontFamily: 'Tomorrow', color: '#05204a' }}>
             ONGOING <br /> SUPPORT
           </span>
         </Planet>
         
         <Planet 
           name="development" 
-          color="#3730ff" 
+          color="#3b65d8" 
           size={170} 
           orbitRadius={60} 
           speed={0.000005} // Drastically reduced speed
@@ -577,21 +577,21 @@ export default function ServicesSection() {
         
         {/* Small orbital bodies - added more for a fuller appearance */}
         <OrbitalBody size={15} orbitRadius={60} speed={0.001} angle={Math.PI * 1.5} color="#ffffff" />
-        <OrbitalBody size={8} orbitRadius={80} speed={0.0008} angle={Math.PI * 0.7} color="#3730ff" />
+        <OrbitalBody size={8} orbitRadius={80} speed={0.0008} angle={Math.PI * 0.7} color="#05204a" />
         <OrbitalBody size={12} orbitRadius={100} speed={0.0006} angle={Math.PI * 1.2} color="#8a9cc0" />
         <OrbitalBody size={6} orbitRadius={105} speed={0.0009} angle={Math.PI * 0.3} color="#ffffff" />
-        <OrbitalBody size={10} orbitRadius={65} speed={0.0007} angle={Math.PI * 1.0} color="#3730ff" />
+        <OrbitalBody size={10} orbitRadius={65} speed={0.0007} angle={Math.PI * 1.0} color="#05204a" />
         
         {/* Additional orbital bodies */}
         <OrbitalBody size={7} orbitRadius={45} speed={0.00095} angle={Math.PI * 0.5} color="#ffffff" />
         <OrbitalBody size={9} orbitRadius={70} speed={0.00075} angle={Math.PI * 1.7} color="#8a9cc0" />
-        <OrbitalBody size={5} orbitRadius={85} speed={0.00085} angle={Math.PI * 0.9} color="#3730ff" />
+        <OrbitalBody size={5} orbitRadius={85} speed={0.00085} angle={Math.PI * 0.9} color="#05204a" />
         <OrbitalBody size={11} orbitRadius={50} speed={0.00065} angle={Math.PI * 1.3} color="#ffffff" />
         <OrbitalBody size={8} orbitRadius={90} speed={0.00055} angle={Math.PI * 0.4} color="#8a9cc0" />
-        <OrbitalBody size={13} orbitRadius={40} speed={0.00105} angle={Math.PI * 1.9} color="#3730ff" />
+        <OrbitalBody size={13} orbitRadius={40} speed={0.00105} angle={Math.PI * 1.9} color="#05204a" />
         <OrbitalBody size={6} orbitRadius={75} speed={0.00115} angle={Math.PI * 0.6} color="#ffffff" />
         <OrbitalBody size={10} orbitRadius={95} speed={0.00045} angle={Math.PI * 1.1} color="#8a9cc0" />
-        <OrbitalBody size={7} orbitRadius={55} speed={0.00125} angle={Math.PI * 0.8} color="#3730ff" />
+        <OrbitalBody size={7} orbitRadius={55} speed={0.00125} angle={Math.PI * 0.8} color="#05204a" />
         <OrbitalBody size={9} orbitRadius={65} speed={0.00135} angle={Math.PI * 1.6} color="#ffffff" />
       </div>
       

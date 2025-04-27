@@ -11,7 +11,7 @@ export default function Footer() {
         <p className="text-xs md:text-sm">divyamgoyal878@gmail.com<br />+91 8233120760</p>
       </div>
       <div className="copyright-info text-right">
-        <p className="text-xs md:text-sm">© STARTECH INDUSTRIES<br />{currentYear}</p>
+        <p className="text-xs md:text-sm">© STARTECH SOLUTIONS<br />{currentYear}</p>
       </div>
     </div>
   );
