@@ -40,7 +40,7 @@ const Navbar = () => {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span style={{ fontFamily: 'Tomorrow-Bold' }} className="text-xl font-bold text-black">STAR<span className="text-[#3730FF]">TECH</span> INDUSTRIES</span>
+            <span style={{ fontFamily: 'Tomorrow-Bold' }} className="text-xl font-bold text-black">STAR<span className="text-[#1f01b9]">TECH</span> INDUSTRIES</span>
           </div>
 
           {/* Hamburger Menu Button */}
@@ -61,7 +61,7 @@ const Navbar = () => {
             <NavButton onClick={() => scrollToSection('skills')}>SKILLS</NavButton>
             <NavButton onClick={() => scrollToSection('work')}>WORK</NavButton>
             <NavButton onClick={() => scrollToSection('about')}>ABOUT</NavButton>
-            <NavButton onClick={handleContactClick} className="bg-[#3730ff] text-white">
+            <NavButton onClick={handleContactClick} className="bg-[#05204a] text-white">
               CONTACT
             </NavButton>
           </div>
@@ -73,7 +73,7 @@ const Navbar = () => {
           <MobileNavButton onClick={() => { scrollToSection('skills'); toggleMenu(); }}>SKILLS</MobileNavButton>
           <MobileNavButton onClick={() => { scrollToSection('work'); toggleMenu(); }}>WORK</MobileNavButton>
           <MobileNavButton onClick={() => { scrollToSection('about'); toggleMenu(); }}>ABOUT</MobileNavButton>
-          <MobileNavButton onClick={handleContactClick} className="bg-[#3730ff] text-white">
+          <MobileNavButton onClick={handleContactClick} className="bg-[#05204a] text-white">
             CONTACT
           </MobileNavButton>
         </div>

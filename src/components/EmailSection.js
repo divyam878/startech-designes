@@ -14,7 +14,7 @@ export default function EmailSection() {
         <p className="text-sm md:text-sm text-black mb-1 md:mb-2" style={{ fontFamily: 'RetroPix' }}>
           HAVE A PROJECT IN MIND?<br />EMAIL ME AT
         </p>
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-[#3e34f4] mt-6 md:mt-12" style={{ fontFamily: 'Tomorrow-Bold' }}>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-[#05204a] mt-6 md:mt-12" style={{ fontFamily: 'Tomorrow-Bold' }}>
           DIVYAMGOYAL878@GMAIL.COM
         </h1>
       </div>

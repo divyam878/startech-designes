@@ -33,7 +33,7 @@ export default function CollaborationSection() {
     <div className="flex items-center justify-center h-screen bg-[#e2e2e2]">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-center h-screen bg-[#e2e2e2] px-4 md:px-0">
         <div className="flex flex-col items-start">
-          <h1 className="text-5xl md:text-9xl font-bold text-[#3e34f4] mb-8" style={{ fontFamily: 'Tomorrow-Bold', textAlign: 'left' }}>
+          <h1 className="text-5xl md:text-9xl font-bold text-[#05204a] mb-8" style={{ fontFamily: 'Tomorrow-Bold', textAlign: 'left' }}>
             WANT TO<br />
             WORK<br />
             TOGETHER?
@@ -70,7 +70,7 @@ export default function CollaborationSection() {
         {/* Modal */}
         {isModalOpen && (
           <div className="fixed inset-0 bg-[#e2e2e2] flex items-center justify-center p-4 md:p-0">
-            <div className="bg-white p-6 md:p-20 rounded-2xl shadow-lg border-4 border-[#3e34f4] relative w-full md:w-4/5 max-w-3xl">
+            <div className="bg-white p-6 md:p-20 rounded-2xl shadow-lg border-4 border-[#05204a] relative w-full md:w-4/5 max-w-3xl">
               <button onClick={handleCloseModal} className="absolute top-2 md:top-4 right-2 md:right-4 text-black text-xl">X</button>
               <label className="block text-black mb-4" style={{ fontFamily: 'Tomorrow-Bold' }}>Your Name</label>
               <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-0 mb-6">
@@ -79,18 +79,18 @@ export default function CollaborationSection() {
                   placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="border-2 border-[#3e34f4] p-3 w-full rounded-lg text-black"
+                  className="border-2 border-[#05204a] p-3 w-full rounded-lg text-black"
                 />
-                <button onClick={handleGenerateTemplate} className="bg-[#3e34f4] text-white px-6 py-3 rounded-lg md:ml-4 whitespace-nowrap cursor-pointer w-full md:w-auto" style={{ fontFamily: 'Tomorrow-Bold' }}>
+                <button onClick={handleGenerateTemplate} className="bg-[#05204a] text-white px-6 py-3 rounded-lg md:ml-4 whitespace-nowrap cursor-pointer w-full md:w-auto" style={{ fontFamily: 'Tomorrow-Bold' }}>
                   Generate Template
                 </button>
               </div>
               <textarea
                 value={template}
                 readOnly
-                className="border-2 border-[#3e34f4] p-3 w-full h-48 rounded-lg text-black mb-20 md:mb-6"
+                className="border-2 border-[#05204a] p-3 w-full h-48 rounded-lg text-black mb-20 md:mb-6"
               />
-              <button onClick={handleCopyTemplate} className="bg-[#3e34f4] text-white px-6 py-3 rounded-lg absolute bottom-6 right-6 md:right-18 w-[calc(100%-48px)] md:w-auto" style={{ fontFamily: 'Tomorrow-Bold' }}>
+              <button onClick={handleCopyTemplate} className="bg-[#05204a] text-white px-6 py-3 rounded-lg absolute bottom-6 right-6 md:right-18 w-[calc(100%-48px)] md:w-auto" style={{ fontFamily: 'Tomorrow-Bold' }}>
                 Copy Template
               </button>
             </div>

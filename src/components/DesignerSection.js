@@ -33,7 +33,7 @@ const DesignerSection = () => {
 
         {/* Text Section */}
         <div className="text-left md:text-left">
-          <h1 className="text-5xl md:text-8xl font-bold text-[#3730ff]" style={{ fontFamily: 'Tomorrow' }}>
+          <h1 className="text-5xl md:text-8xl font-bold text-[#05204a]" style={{ fontFamily: 'Tomorrow' }}>
             THE
             <br />
             DESIGNER

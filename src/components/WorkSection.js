@@ -117,7 +117,7 @@ export default function WorkSection() {
       ref={sectionRef}
       className="relative w-full bg-blue-600 py-24 overflow-hidden"
       style={{ 
-        background: 'linear-gradient(to bottom, #3730ff 0%, #2a24c9 100%)'
+        background: 'linear-gradient(to bottom, #05204a 0%, #1f01b9 100%)'
       }}
     >
       {/* Pixelated effect using colored blocks */}

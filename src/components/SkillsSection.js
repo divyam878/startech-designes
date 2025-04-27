@@ -41,7 +41,7 @@ const SkillNode = ({ x, y, radius, label, type, onClick }) => {
         ...baseStyles,
         width: `${radius * 2}px`,
         height: `${radius * 2}px`,
-        backgroundColor: '#3730ff',
+        backgroundColor: '#05204a',
         color: 'white',
         fontFamily: 'Tomorrow-Bold',
         fontWeight: 'bold',
@@ -131,7 +131,7 @@ const Connection = ({ startNode, endNode }) => {
           left: start.x,
           width: `${length}px`,
           height: '2px',
-          backgroundColor: '#3730ff',
+          backgroundColor: '#05204a',
           opacity: 0.7,
           transformOrigin: '0 0',
           transform: `rotate(${angle}deg)`
@@ -277,11 +277,11 @@ const ExpandedSkillView = ({ skill, onClose, isMobile = window.innerWidth < 768 
         @keyframes circleExpand {
           0% { 
             clip-path: circle(0% at 50% 50%);
-            background-color: #3730ff;
+            background-color: #05204a;
           }
           100% { 
             clip-path: circle(150% at 50% 50%);
-            background-color: #3730ff;
+            background-color: #05204a;
           }
         }
         
@@ -319,7 +319,7 @@ const ExpandedSkillView = ({ skill, onClose, isMobile = window.innerWidth < 768 
       
       {/* Expanding Background */}
       <div 
-        className="absolute inset-0 bg-[#3730ff]"
+        className="absolute inset-0 bg-[#05204a]"
         style={{ 
           animation: 'circleExpand 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards'
         }}
@@ -333,7 +333,7 @@ const ExpandedSkillView = ({ skill, onClose, isMobile = window.innerWidth < 768 
       {/* Back Button */}
       <button 
         onClick={onClose}
-        className="absolute top-4 md:top-8 right-4 md:right-8 z-50 bg-white text-[#3730ff] px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-sm md:text-base"
+        className="absolute top-4 md:top-8 right-4 md:right-8 z-50 bg-white text-[#05204a] px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-sm md:text-base"
       >
         Back
       </button>
@@ -617,7 +617,7 @@ export default function SkillsSection() {
 
       {/* SKILLS title */}
       <div className="absolute  top-10 left-4 md:top-10 md:left-24 z-10">
-        <h1 className="text-5xl font-bold text-[#3730ff]" style={{ fontFamily: 'Tomorrow-Bold' }}>
+        <h1 className="text-5xl font-bold text-[#05204a]" style={{ fontFamily: 'Tomorrow-Bold' }}>
           SKILLS
         </h1>
       </div>
@@ -647,7 +647,7 @@ export default function SkillsSection() {
           style={{ 
             width: '80%', 
             maxWidth: '500px',
-            border: '2px solid #3730ff'
+            border: '2px solid #05204a'
           }}
         >
           <h3 className="text-xl font-bold text-blue-600 mb-2">{findNodeById(selectedSkill).label}</h3>

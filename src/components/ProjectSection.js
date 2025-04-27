@@ -20,11 +20,11 @@ const ProjectSection = () => {
           smooth, user-friendly experiences that align with your goals.
         </p>
       </div>
-      <div className="border-t-2 border-[#3730ff] w-full mb-0"></div>
+      <div className="border-t-2 border-[#05204a] w-full mb-0"></div>
       <div className="flex flex-col md:flex-row items-start justify-between w-full md:space-x-8 space-y-6 md:space-y-0 mt-0">
         {/* Start a Project Button */}
         <div
-          className="bg-[#3730ff] text-white font-bold py-4 md:py-6 px-6 md:px-8 flex items-center justify-between button-hover transition-all duration-300 w-auto md:w-auto"
+          className="bg-[#05204a] text-white font-bold py-4 md:py-6 px-6 md:px-8 flex items-center justify-between button-hover transition-all duration-300 w-auto md:w-auto"
           style={{ fontFamily: "Tomorrow-Bold", cursor: "pointer" }}
         >
           <div className="flex flex-col text-left">
