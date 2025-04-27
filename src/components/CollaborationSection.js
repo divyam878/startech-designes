@@ -57,7 +57,7 @@ export default function CollaborationSection() {
             alt="CTA Button"
             width={150}
             height={75}
-            className={`cursor-pointer mt-4 transition-transform duration-300 md:w-[200px] md:h-[100px] ${isClicked ? 'scale-95' : 'scale-100'}`}
+            className={`cursor-pointer mt-4 transition-transform duration-300 md:w-[200px] md:h-[200px] ${isClicked ? 'scale-95' : 'scale-100'}`}
             onClick={handleClick}
           />
           {isClicked && (
