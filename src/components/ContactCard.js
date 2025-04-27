@@ -183,18 +183,19 @@ export default function ContactCard({ isVisible, onClose }) {
           ))}
         </div>
 
-        <div className="card-header flex flex-col md:flex-row items-center md:ml-72 justify-center gap-2 md:gap-4 relative z-10">
+        <div className="card-header flex flex-col md:flex-row items-center  justify-center gap-2 md:gap-4 relative z-10">
           <img 
             src="/starlab-icon.png" 
             alt="Starlab Logo" 
-            className="w-20 h-20 md:w-24 md:h-24 object-contain"
+            className="w-20 h-20 md:w-32 md:h-32 object-contain"
           />
-          <span 
+          <div 
             style={{ fontFamily: 'Tomorrow-Bold' }} 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center md:text-left"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center md:text-left flex flex-col"
           >
-            STAR<span className="text-[#3730FF]">TECH</span> SOLUTIONS
-          </span>
+            <div>STAR<span className="text-[#1f01b9]">TECH</span></div>
+            <div>SOLUTIONS</div>
+          </div>
         </div>
         <div className="card-footer mt-4 md:mt-8 relative z-10">
           <p className="text-sm md:text-base text-center">
