@@ -18,9 +18,10 @@ export default function CollaborationSection() {
     setTemplate(`Hey Divyam,\n\nI came across your project and was genuinely impressed by the work. I’m ${name}, and I’d love to hear more about how you built it, the ideas behind it, and the tech you used. If you’re open to it, I’d also be interested in discussing a potential collaboration or getting your input on something I’m working on. Looking forward to connecting!`);
   };
 
-  const handleCopyTemplate = () => {
+  const handleCopyAndMail = () => {
     navigator.clipboard.writeText(template).then(() => {
-      alert('Template copied! Please open Gmail and compose an email to divyamgoyal878@gmail.com with the template as the body.');
+      alert('Template copied! Opening your mail client...');
+      window.location.href = `mailto:divyamgoyal878@gmail.com?subject=Collaboration&body=${encodeURIComponent(template)}`;
     });
   };
 
@@ -90,9 +91,14 @@ export default function CollaborationSection() {
                 readOnly
                 className="border-2 border-[#05204a] p-3 w-full h-48 rounded-lg text-black mb-20 md:mb-6"
               />
-              <button onClick={handleCopyTemplate} className="bg-[#05204a] text-white px-6 py-3 rounded-lg absolute bottom-6 right-6 md:right-18 w-[calc(100%-48px)] md:w-auto" style={{ fontFamily: 'Tomorrow-Bold' }}>
-                Copy Template
-              </button>
+              <a href={`mailto:divyamgoyal878@gmail.com?subject=Collaboration&body=${encodeURIComponent(template)}`} 
+                 className="flex items-center space-x-3 bg-[#05204a] text-white px-6 py-3 rounded-lg absolute bottom-6 right-6 md:right-18 w-[calc(100%-48px)] md:w-auto" 
+                 style={{ fontFamily: 'Tomorrow-Bold' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span className="text-lg font-medium">Copy and Mail</span>
+              </a>
             </div>
           </div>
         )}

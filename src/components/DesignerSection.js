@@ -26,7 +26,7 @@ const DesignerSection = () => {
             ref={imageRef}
             src="/myimage.jpg" 
             alt="Designer" 
-            className="w-[150%] h-[150%] object-cover -translate-x-[0%] -translate-y-[25%] filter grayscale-[80%] transition-all duration-300 hover:grayscale-0"
+            className="w-[150%] h-[150%] object-cover -translate-x-[0%] -translate-y-[25%] filter grayscale-[80%] transition-all duration-300 hover:filter-none"
             style={{ transform: 'translateY(0px)' }}
           />
         </div>

@@ -189,11 +189,9 @@ const ServiceModal = ({ service, onClose }) => {
     // Set animation complete after longer delay to ensure particles finish first
     const timer = setTimeout(() => {
       setAnimationComplete(true);
-      // Clear particles after modal opens
-      setTimeout(() => {
-        setParticles([]);
-      }, 500);
-    }, 1000); // Increased delay to 1000ms
+      // Clear particles immediately after modal opens
+      setParticles([]);
+    }, 500); // Reduced delay to 500ms
     
     return () => clearTimeout(timer);
   }, []);
@@ -520,7 +518,7 @@ export default function ServicesSection() {
       <div className="absolute top-1/2 left-0 transform -translate-y-1/2">
         <div className="w-48 h-48 md:w-96 md:h-96 bg-blue-600 rounded-full flex items-center justify-center"
              style={{ 
-               boxShadow: '0 0 40px rgba(55, 48, 255, 0.6)',
+               boxShadow: '0 0 40px rgba(12, 7, 173, 0.6)',
                background: 'radial-gradient(circle, #4a5c8f 0%, #4a5c8f 100%)'
              }}>
           <h1 className="text-3xl md:text-5xl font-bold text-white ml-8 md:ml-16" 
