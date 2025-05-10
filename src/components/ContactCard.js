@@ -1,9 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { X } from 'lucide-react';
 import './ContactCard.css';
 
 export default function ContactCard({ isVisible, onClose }) {
   const cardRef = useRef(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [formData, setFormData] = useState({
+    fullname: '',
+    mobile: '',
+    email: '',
+    message: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const [style, setStyle] = useState({
     bottom: '-100%',
@@ -61,11 +70,52 @@ export default function ContactCard({ isVisible, onClose }) {
     setTilt({ x: 0, y: 0 });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'fc50b87d-7eee-4609-bdea-b6255b571f81',
+          ...formData
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setSuccess(true);
+        setFormData({
+          fullname: '',
+          mobile: '',
+          email: '',
+          message: ''
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
     <>
       {isVisible && <div className="backdrop" />}
-      <div 
-        className="contact-card p-4 md:p-8 w-[90%] md:w-[80%] max-w-4xl relative overflow-hidden fixed"
+      <form 
+        onSubmit={handleSubmit}
+        className="contact-card p-4 md:p-8 w-[90%] md:w-[100%] max-w-3xl min-h-[600px] md:min-h-[700px] relative overflow-hidden fixed"
         style={{
           ...style,
           background: 'linear-gradient(145deg, #e6e6e6, #ffffff)',
@@ -78,131 +128,128 @@ export default function ContactCard({ isVisible, onClose }) {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
+        {/* Close button */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-4 right-4 z-50 p-2 rounded-full hover:bg-black/10 transition-colors duration-200"
+          aria-label="Close form"
+        >
+          <X size={24} className="text-[#05204a]" />
+        </button>
+
         {/* Base metallic layer */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(145deg, #d4d4d4, #f5f5f5)',
-            opacity: 0.8,
-            pointerEvents: 'none',
-          }}
-        />
+        <div className="absolute inset-0" style={{
+          background: 'linear-gradient(145deg, #d4d4d4, #f5f5f5)',
+          opacity: 0.8,
+          pointerEvents: 'none',
+        }} />
 
         {/* Rainbow hologram layer */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `
-              linear-gradient(
-                ${45 + (tilt.x + tilt.y) * 2}deg,
-                rgba(255, 0, 255, 0.1),
-                rgba(0, 255, 255, 0.1),
-                rgba(255, 255, 0, 0.1)
-              )
-            `,
-            opacity: Math.abs(tilt.x / 10) + Math.abs(tilt.y / 10),
-            mixBlendMode: 'color-dodge',
-            pointerEvents: 'none',
-          }}
-        />
+        <div className="absolute inset-0" style={{
+          background: `linear-gradient(
+            ${45 + (tilt.x + tilt.y) * 2}deg,
+            rgba(255, 0, 255, 0.1),
+            rgba(0, 255, 255, 0.1),
+            rgba(255, 255, 0, 0.1)
+          )`,
+          opacity: Math.abs(tilt.x / 10) + Math.abs(tilt.y / 10),
+          mixBlendMode: 'color-dodge',
+          pointerEvents: 'none',
+        }} />
 
         {/* Dynamic shimmer effect */}
-        <div 
-          className="absolute inset-0 shimmer"
-          style={{
-            background: `
-              linear-gradient(
-                ${90 + (tilt.y * 5)}deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.6) 45%,
-                rgba(255, 255, 255, 0.8) 50%,
-                rgba(255, 255, 255, 0.6) 55%,
-                transparent 100%
-              )
-            `,
-            backgroundSize: '200% 200%',
-            animation: 'shimmer 1.5s infinite',
-            opacity: 0.5 + Math.abs(tilt.x / 20) + Math.abs(tilt.y / 20),
-            mixBlendMode: 'overlay',
-            pointerEvents: 'none',
-          }}
-        />
+        <div className="absolute inset-0 shimmer" style={{
+          background: `linear-gradient(
+            ${90 + (tilt.y * 5)}deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.6) 45%,
+            rgba(255, 255, 255, 0.8) 50%,
+            rgba(255, 255, 255, 0.6) 55%,
+            transparent 100%
+          )`,
+          backgroundSize: '200% 200%',
+          animation: 'shimmer 1.5s infinite',
+          opacity: 0.5 + Math.abs(tilt.x / 20) + Math.abs(tilt.y / 20),
+          mixBlendMode: 'overlay',
+          pointerEvents: 'none',
+        }} />
 
-        {/* Micro texture pattern */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(
-                ${45 + (tilt.x + tilt.y) * 2}deg,
-                transparent 0px,
-                rgba(255, 255, 255, 0.1) 1px,
-                transparent 2px
-              )
-            `,
-            backgroundSize: '4px 4px',
-            opacity: 0.3,
-            mixBlendMode: 'overlay',
-            pointerEvents: 'none',
-          }}
-        />
-
-        {/* Shimmer effect */}
-        <div 
-          className="absolute inset-0 shimmer"
-          style={{
-            background: `linear-gradient(
-              90deg,
-              transparent 0%,
-              rgba(255, 255, 255, 0.2) 15%,
-              rgba(255, 255, 255, 0.4) 30%,
-              rgba(255, 255, 255, 0.2) 45%,
-              transparent 100%
-            )`,
-            backgroundSize: '200% 100%',
-            animation: 'shimmer 3s infinite',
-            opacity: Math.abs(tilt.x / 20) + Math.abs(tilt.y / 20), // Opacity based on tilt
-            pointerEvents: 'none',
-          }}
-        />
-
-        {/* Star background */}
-        <div className="stars-container absolute inset-0 overflow-hidden opacity-5">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="star absolute bg-white rounded-full"
-              style={{
-                width: '2px',
-                height: '2px',
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `twinkle ${Math.random() * 3 + 2}s infinite`
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="card-header flex flex-col md:flex-row items-center  justify-center gap-2 md:gap-4 relative z-10">
-          <img 
-            src="/starlab-icon.png" 
-            alt="Starlab Logo" 
-            className="w-20 h-20 md:w-32 md:h-32 object-contain"
-          />
-          <div 
-            style={{ fontFamily: 'Tomorrow-Bold' }} 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center md:text-left flex flex-col"
-          >
-            <div>STAR<span className="text-[#1f01b9]">TECH</span></div>
-            <div>SOLUTIONS</div>
+        {/* Content */}
+        <div className="relative z-10 space-y-8 md:space-y-10">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#142a6c]" style={{ fontFamily: 'Tomorrow-Bold' }}>
+              Let&apos;s Connect
+            </h2>
           </div>
+
+          <div className="space-y-4 md:space-y-4">
+            <input
+              type="text"
+              name="fullname"
+              value={formData.fullname}
+              onChange={handleChange}
+              placeholder="Full Name"
+              required
+              className="w-full px-4 py-3 rounded-lg border-2 border-[#05204a] bg-white/50 backdrop-blur-sm text-black focus:outline-none focus:ring-2 focus:ring-[#05204a]"
+            />
+
+            <input
+              type="tel"
+              name="mobile"
+              value={formData.mobile}
+              onChange={handleChange}
+              placeholder="Mobile Number"
+              required
+              className="w-full px-4 py-3 rounded-lg border-2 border-[#05204a] bg-white/50 backdrop-blur-sm text-black focus:outline-none focus:ring-2 focus:ring-[#05204a]"
+            />
+
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email Address"
+              required
+              className="w-full px-4 py-3 rounded-lg border-2 border-[#05204a] bg-white/50 backdrop-blur-sm text-black focus:outline-none focus:ring-2 focus:ring-[#05204a]"
+            />
+
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Write your message..."
+              required
+              rows="4"
+              className="w-full px-4 py-3 rounded-lg border-2 border-[#05204a] bg-white/50 backdrop-blur-sm text-black focus:outline-none focus:ring-2 focus:ring-[#05204a]"
+            />
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full px-8 py-4 bg-[#05204a] text-white rounded-lg font-bold hover:bg-[#0e1e4d] transition-colors duration-300 disabled:opacity-50"
+              style={{ fontFamily: 'Tomorrow-Bold' }}
+            >
+              {loading ? 'Sending...' : 'Send Message'}
+            </button>
+          </div>
+
+          {success && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/90 backdrop-blur-xl">
+              <div className="checkmark-circle">
+                <div className="checkmark"></div>
+              </div>
+              <h3 className="text-2xl font-bold text-[#05204a] mt-6 px-4" 
+                  style={{ fontFamily: 'Tomorrow-Bold' }}>
+                Message Sent Successfully!
+              </h3>
+              <p className="text-[#05204a] mt-2 px-4">
+                Thank you for reaching out. I&apos;ll get back to you soon.
+              </p>
+            </div>
+          )}
         </div>
-        <div className="card-footer mt-4 md:mt-8 relative z-10">
-          <p className="text-sm md:text-base text-center">
-            divyamgoyal878@gmail.com<br />+91 8233120760
-          </p>
-        </div>
-      </div>
+      </form>
 
       <style jsx>{`
         @keyframes twinkle {
@@ -211,11 +258,56 @@ export default function ContactCard({ isVisible, onClose }) {
         }
 
         @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+
+        .checkmark-circle {
+          width: 80px;
+          height: 80px;
+          position: relative;
+          background: #05204a;
+          border-radius: 50%;
+          animation: scale-in 0.3s ease-out;
+        }
+
+        .checkmark {
+          width: 40px;
+          height: 24px;
+          position: absolute;
+          border-left: 4px solid white;
+          border-bottom: 4px solid white;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -60%) rotate(-45deg);
+          animation: checkmark 0.4s ease-in-out 0.2s forwards;
+          opacity: 0;
+        }
+
+        @keyframes scale-in {
           0% {
-            background-position: 200% 0;
+            transform: scale(0);
           }
           100% {
-            background-position: -200% 0;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes checkmark {
+          0% {
+            width: 0;
+            height: 0;
+            opacity: 0;
+          }
+          50% {
+            width: 0;
+            height: 24px;
+            opacity: 1;
+          }
+          100% {
+            width: 40px;
+            height: 24px;
+            opacity: 1;
           }
         }
       `}</style>

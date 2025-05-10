@@ -12,7 +12,16 @@ export default function WorkSection() {
   // Project data
   const projects = [
    
-    
+    {
+      id: 'house-of-modular',
+      title: 'HOUSE OF MODULAR',
+      date: 'Mar 2025',
+      description: 'Designed and developed a sleek, responsive website for a modern home decor and electronics brand. The site features a dynamic video background, clean grid layout, and smooth transitions to enhance brand storytelling. Built with Next.js and Tailwind CSS, it ensures high performance, scalability, and a seamless user experience across all devices.',
+      image: '/house-of-modular.png',
+      video: '/house-of-modular.mp4',
+      tags: ['Home Decor', 'Next.js', 'Company Website'],
+      position: 'right'
+    },
       {
         id: 'axio-electronics',
         title: 'AXIO ELECTRONICS',
@@ -21,7 +30,7 @@ export default function WorkSection() {
         image: '/axio-electronics.png',
         video: '/axio-electronics.mp4',
         tags: ['Electronics', 'Next.js', 'Company Website'],
-        position: 'right' // Will be on the left side
+        position: 'left' // Will be on the left side
       },
       {
         id: 'nessco',
@@ -31,7 +40,7 @@ export default function WorkSection() {
         image: '/nessco.jpeg',
         video: '/nessco.mp4',
         tags: ['Manufacturing', 'Next.js', 'Paper Cups', 'Company Website'],
-        position: 'left' // Will be on the right side
+        position: 'right' // Will be on the right side
       },
       {
         id: 'what-the-fashion',
@@ -41,7 +50,7 @@ export default function WorkSection() {
         image: '/what-the-fashion.jpeg',
         video: '/what-the-fashion.mp4',
         tags: ['Clothing', 'React', 'Ecommerce'],
-        position: 'right' // Will be on the right side
+        position: 'left' // Will be on the right side
       },
       {
         id: 'formicia',
@@ -51,7 +60,7 @@ export default function WorkSection() {
         image: '/formicia.png',
         video: '/formicia.mp4',
         tags: ['Next.js', 'TypeScript', 'Form Builder', 'Prisma', 'Clerk', 'shadcn/ui'],
-        position: 'left' // Will be on the left side
+        position: 'right' // Will be on the left side
       },
       {
         id: 'guess-number',
@@ -61,7 +70,7 @@ export default function WorkSection() {
         image: '/guess-number.png',
         video: '/guess-number.mp4',
         tags: ['Game', 'Visual'],
-        position: 'right' // Will be on the right side
+        position: 'left' // Will be on the right side
       },
       {
         id: 'roll-the-dice',
@@ -71,7 +80,7 @@ export default function WorkSection() {
         image: '/roll-the-dice.jpeg',
         video: '/roll-the-dice.mp4',
         tags: ['Game', 'Visual'],
-        position: 'left' // Will be on the left side
+        position: 'right' // Will be on the left side
       }
   ];
   
