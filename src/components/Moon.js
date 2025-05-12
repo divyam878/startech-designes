@@ -66,6 +66,11 @@ const WebsiteDesignSection = ({ onContactClick }) => {
         style={{
           filter: 'brightness(1)'
         }}
+        onCanPlay={(e) => {
+          e.target.play().catch(error => {
+            console.log("Autoplay failed:", error)
+          })
+        }}
       >
         <source src="/website-design.webm" type="video/webm" />
         <source src="/website-design.mp4" type="video/mp4" />
