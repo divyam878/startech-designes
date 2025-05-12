@@ -61,12 +61,15 @@ const WebsiteDesignSection = ({ onContactClick }) => {
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-4 md:inset-8 w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] h-[calc(85%-2rem)] md:h-[calc(100%-4rem)] object-cover rounded-[1rem] md:rounded-[2rem]"
         style={{
           filter: 'brightness(1)'
         }}
       >
+        <source src="/website-design.webm" type="video/webm" />
         <source src="/website-design.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
 
       {/* Text Overlay */}
